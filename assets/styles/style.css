@@ -7,10 +7,9 @@ body{
     background-color: #F7F7F7;
 }
 
-.test{
-    padding: 10px 20px;
-    margin: 30px;
-    border: 5px solid #040; }.
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
 }
 
 .pop-up{
@@ -26,9 +25,23 @@ body{
 }
 
 .pop-up-content{
+    position: relative;
+    padding: 30px;
     width: 50%;
-    height: 30%;
     background-color: #F7F7F7;
+}
+
+.pop-up-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
 }
 
 .hidden{
@@ -83,3 +96,11 @@ body{
     background-color: #ffffff;
     border: 1px solid black;
 }
+
+.book-card-cart{
+    position: relative;
+    padding: 10px 40px 10px 10px;
+    border: 1px solid grey;
+
+}
+

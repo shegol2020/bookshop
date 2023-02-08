@@ -1,9 +1,11 @@
+const fragment = document.createDocumentFragment();
+
 const bodyElement = document.querySelector('body');
 
 const popUpElement = document.createElement('div');
 popUpElement.classList.add('pop-up');
 popUpElement.classList.add('hidden');
-bodyElement.appendChild(popUpElement);
+fragment.appendChild(popUpElement);
 
 const popUpContentElement = document.createElement('div');
 popUpContentElement.classList.add('pop-up-content');
@@ -11,7 +13,7 @@ popUpElement.appendChild(popUpContentElement);
 
 const headerElement = document.createElement('header');
 headerElement.classList.add('header');
-bodyElement.appendChild(headerElement);
+fragment.appendChild(headerElement);
 
 const headerTitleElement = document.createElement('h1');
 headerTitleElement.classList.add('header-title');
@@ -26,7 +28,9 @@ headerTitleElement.appendChild(headerTitleLinkElement);
 
 const mainElement = document.createElement('main');
 mainElement.classList.add('main');
-bodyElement.appendChild(mainElement);
+fragment.appendChild(mainElement);
+
+bodyElement.appendChild(fragment);
 
 const mainWrapperElement = document.createElement('div');
 mainWrapperElement.classList.add('main-wrapper');
@@ -69,24 +73,23 @@ const exCart = document.createElement('div');
 exCart.classList.add('example-card');
 cartCardsContainer.appendChild(exCart);
 
-const createCartBtn = document.createElement('button');
-createCartBtn.classList.add('btn-create');
-createCartBtn.innerText = "Create";
-cartCardsContainer.appendChild(createCartBtn);
+// const createCartBtn = document.createElement('button');
+// createCartBtn.classList.add('btn-create');
+// createCartBtn.innerText = "Create";
+// cartCardsContainer.appendChild(createCartBtn);
+//
+// createCartBtn.addEventListener('click', createCard);
+//
+// const clearCartBtn = document.createElement('button');
+// clearCartBtn.classList.add('btn-clear');
+// clearCartBtn.innerText = "Clear";
+// cart.appendChild(clearCartBtn);
 
-createCartBtn.addEventListener('click', createCard);
-
-const clearCartBtn = document.createElement('button');
-clearCartBtn.classList.add('btn-clear');
-clearCartBtn.innerText = "Clear";
-cart.appendChild(clearCartBtn);
-
-
-clearCartBtn.addEventListener('click', () => {
-    const cardsInCart = document.querySelectorAll('.ex-book-price');
-    cardsInCart.forEach(card => card.remove());
-    updateCart()
-});
+// clearCartBtn.addEventListener('click', () => {
+//     const cardsInCart = document.querySelectorAll('.ex-book-price');
+//     cardsInCart.forEach(card => card.remove());
+//     updateCart()
+// });
 
 let booksArray = [];
 
@@ -146,46 +149,81 @@ function renderBooks(books) {
 
         bookBuyBtnElement.addEventListener('click', addToCartClicked);
 
+
+        /* Popup */
+        const popUpCard = document.querySelector('.pop-up-content');
+
+        bookInfoBtnElement.addEventListener('click', () => {
+                popUpElement.classList.remove('hidden');
+
+            }
+        );
+
+        bookInfoBtnElement.addEventListener('click', popUpRender);
+
+        function popUpRender(event) {
+            let bookNum = event.target.parentElement.dataset.id;
+
+            popUpCard.innerHTML = `
+            <button class="pop-up-close" type="button">
+            <span class="material-icons">close</span>
+             </button>
+            <img class="book-img" src="${booksArray[bookNum].imageLink}" alt="">
+            <h3 class="book-title">${booksArray[bookNum].title}</h3>
+            <h4 class="book-subtitle">${booksArray[bookNum].author}</h4>
+            <p class="book-desc">${booksArray[bookNum].description}</p>
+            `
+
+            const popUpCloseBtn = document.querySelector('.pop-up-close');
+
+            popUpCloseBtn.addEventListener('click', () => {
+                popUpElement.classList.add('hidden');
+                document.body.classList.remove('stop-scrolling');
+
+            });
+
+            document.body.classList.add('stop-scrolling');
+
+            //добавить возможность зафиксировать попап вне зависимости от скролла
+        }
+
+
+
+
     });
 
 }
 
 
 
-    // popUpElement.addEventListener('click', () => //Закрывает попап по клику где угодно, можно доделать
-    //     popUpElement.classList.add('hidden'))
-
-
-
-
-function createCard() {
-    const exCartContainer = document.createElement('div');
-    exCartContainer.classList.add('ex-book-container');
-    exCart.appendChild(exCartContainer);
-
-    const exCartPriceElement = document.createElement('p');
-    exCartPriceElement.classList.add('ex-book-price');
-    exCartPriceElement.innerText = `30$`;
-    exCartContainer.appendChild(exCartPriceElement);
-
-    const exRemoveBtn = document.createElement('button');
-    exRemoveBtn.classList.add('remove-btn');
-    exRemoveBtn.innerText = "x";
-    exCartContainer.appendChild(exRemoveBtn);
-
-    updateCart()
-}
-
-function updateCart() {
-    let total = 0;
-    const cardsInCart = document.querySelectorAll('.ex-book-container');
-    cardsInCart.forEach(card => {
-        let priceEl = card.querySelector('.ex-book-price');
-        let price = Number(priceEl.innerText.replace("$", ""));
-        total+=price;
-    });
-    document.querySelector(".cart-sum").innerText = total;
-}
+// function createCard() {
+//     const exCartContainer = document.createElement('div');
+//     exCartContainer.classList.add('ex-book-container');
+//     exCart.appendChild(exCartContainer);
+//
+//     const exCartPriceElement = document.createElement('p');
+//     exCartPriceElement.classList.add('ex-book-price');
+//     exCartPriceElement.innerText = `30$`;
+//     exCartContainer.appendChild(exCartPriceElement);
+//
+//     const exRemoveBtn = document.createElement('button');
+//     exRemoveBtn.classList.add('remove-btn');
+//     exRemoveBtn.innerText = "x";
+//     exCartContainer.appendChild(exRemoveBtn);
+//
+//     updateCart()
+// }
+//
+// function updateCart() {
+//     let total = 0;
+//     const cardsInCart = document.querySelectorAll('.ex-book-container');
+//     cardsInCart.forEach(card => {
+//         let priceEl = card.querySelector('.ex-book-price');
+//         let price = Number(priceEl.innerText.replace("$", ""));
+//         total+=price;
+//     });
+//     document.querySelector(".cart-sum").innerText = total;
+// }
 
 // removeBtns.forEach(btn => {
 //     btn.addEventListener('click', () =>
@@ -212,7 +250,7 @@ card.forEach(el => {
 });
 
 cart.addEventListener('dragover', () => {
-    const draggable = document.querySelector('.book-dragging')
+    const draggable = document.querySelector('.book-dragging');
     draggable.children[4].remove();
     cartElement.appendChild(draggable);
 });
@@ -222,11 +260,11 @@ cart.addEventListener('dragover', () => {
 
 function addToCartClicked(event) {
     let book = booksArray.find(book => book.id === Number(event.target.parentElement.dataset.id));
-    addItemToCart(book);
+    renderCardInCart(book);
 }
 
 
-function addItemToCart(book) {
+function renderCardInCart(book) {
 
     const foundItem = cart.querySelector(`[data-id="${book.id}"]`);
 
@@ -236,11 +274,11 @@ function addItemToCart(book) {
         foundItem.children[2].innerHTML=`Price: ${newPrice}$`;
 
     } else {
+        const cardContainer = document.querySelector('.cards-container');
         const addItemCard = document.createElement('div');
         addItemCard.classList.add('book-card-cart');
         addItemCard.setAttribute('data-id', book.id);
         addItemCard.setAttribute('data-counter', 1);
-        const cardContainer = document.querySelector('.cards-container');
         cardContainer.appendChild(addItemCard);
 
         addItemCard.innerHTML= `
@@ -248,36 +286,27 @@ function addItemToCart(book) {
             <h4 class="book-subtitle">${book.author}</h4>
             <p class="book-price">Price: ${book.price}$</p>
             `
+
+        const cardCloseBtn = document.createElement('button');
+        cardCloseBtn.classList.add('pop-up-close');
+        addItemCard.appendChild(cardCloseBtn);
+
+        const cardCloseSpan = document.createElement('span');
+        cardCloseSpan.classList.add('material-icons');
+        cardCloseSpan.innerText = "close";
+        cardCloseBtn.appendChild(cardCloseSpan);
+
+        cardCloseBtn.addEventListener('click', () => {
+            cardCloseBtn.parentElement.remove();
+        });
     }
+
+
 
 
 }
 
 
-
-
-/* Popup */
-
-// bookInfoBtnElement.addEventListener('click', () => {
-//     popUpElement.classList.remove('hidden');
-//     const popEl = document.querySelector('.pop-up');
-//     console.log(popEl, popUpElement);
-
-// const popUpImgElement = popUpElement.createElement('img');
-// popUpImgElement.classList.add('book-img');
-// popUpImgElement.setAttribute('src', book.imageLink);
-// popUpImgElement.setAttribute('alt', '');
-// popUpElement.appendChild(popUpImgElement)
-//
-// const popUpTitleElement = popUpElement.createElement('h3');
-// popUpTitleElement.classList.add('book-title');
-// popUpTitleElement.innerText = book.title;
-// popUpElement.appendChild(bookTitleElement);
-//
-// const popUpSubtitleElement = popUpElement.createElement('h4');
-// popUpSubtitleElement.classList.add('book-subtitle');
-// popUpSubtitleElement.innerText = book.author;
-// popUpElement.appendChild(popUpSubtitleElement);
 
 
 
