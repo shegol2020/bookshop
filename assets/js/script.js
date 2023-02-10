@@ -1,3 +1,5 @@
+/* Layout */
+
 const fragment = document.createDocumentFragment();
 
 const bodyElement = document.querySelector('body');
@@ -59,8 +61,11 @@ cartHeadingElement.classList.add('cart-heading');
 cartHeadingElement.innerText = "Your cart";
 cartElement.appendChild(cartHeadingElement);
 
+let sum = 0;
+
 const cartSumElement = document.createElement('p');
 cartSumElement.classList.add('cart-sum');
+cartSumElement.innerText = `Total: ${sum}$`;
 cartElement.appendChild(cartSumElement);
 
 const cart = document.querySelector('.cart');
@@ -69,27 +74,18 @@ const cartCardsContainer = document.createElement('div');
 cartCardsContainer.classList.add('cards-container');
 cart.appendChild(cartCardsContainer);
 
-const exCart = document.createElement('div');
-exCart.classList.add('example-card');
-cartCardsContainer.appendChild(exCart);
+const confirmContainer = document.createElement('div');
+confirmContainer.classList.add('confirm-container');
+cart.appendChild(confirmContainer);
 
-// const createCartBtn = document.createElement('button');
-// createCartBtn.classList.add('btn-create');
-// createCartBtn.innerText = "Create";
-// cartCardsContainer.appendChild(createCartBtn);
-//
-// createCartBtn.addEventListener('click', createCard);
-//
-// const clearCartBtn = document.createElement('button');
-// clearCartBtn.classList.add('btn-clear');
-// clearCartBtn.innerText = "Clear";
-// cart.appendChild(clearCartBtn);
+const confirmBtn = document.createElement('a');
+confirmBtn.href = '#';
+confirmBtn.classList.add('confirmBtn', 'hidden');
+confirmBtn.innerText = 'Confirm';
+confirmContainer.append(confirmBtn);
 
-// clearCartBtn.addEventListener('click', () => {
-//     const cardsInCart = document.querySelectorAll('.ex-book-price');
-//     cardsInCart.forEach(card => card.remove());
-//     updateCart()
-// });
+
+/* Books rendering */
 
 let booksArray = [];
 
@@ -146,25 +142,23 @@ function renderBooks(books) {
         bookInfoBtnElement.classList.add('btn-info');
         bookInfoBtnElement.innerText = "More info";
         bookListItemElement.appendChild(bookInfoBtnElement);
+    })
 
-        bookBuyBtnElement.addEventListener('click', addToCartClicked);
+}
 
+/* Popup */
+window.addEventListener('click', function(event) {
+    if (event.target.classList.contains('btn-info')) {
+        popUpElement.classList.remove('hidden');
+        popUpRender(event);
+    }
+});
 
-        /* Popup */
-        const popUpCard = document.querySelector('.pop-up-content');
+function popUpRender(event) {
+    let bookNum = event.target.parentElement.dataset.id;
+    const popUpCard = document.querySelector('.pop-up-content');
 
-        bookInfoBtnElement.addEventListener('click', () => {
-                popUpElement.classList.remove('hidden');
-
-            }
-        );
-
-        bookInfoBtnElement.addEventListener('click', popUpRender);
-
-        function popUpRender(event) {
-            let bookNum = event.target.parentElement.dataset.id;
-
-            popUpCard.innerHTML = `
+    popUpCard.innerHTML = `
             <button class="pop-up-close" type="button">
             <span class="material-icons">close</span>
              </button>
@@ -174,106 +168,80 @@ function renderBooks(books) {
             <p class="book-desc">${booksArray[bookNum].description}</p>
             `
 
-            const popUpCloseBtn = document.querySelector('.pop-up-close');
+    const popUpCloseBtn = document.querySelector('.pop-up-close');
 
-            popUpCloseBtn.addEventListener('click', () => {
-                popUpElement.classList.add('hidden');
-                document.body.classList.remove('stop-scrolling');
-
-            });
-
-            document.body.classList.add('stop-scrolling');
-
-            //добавить возможность зафиксировать попап вне зависимости от скролла
-        }
-
-
-
+    popUpCloseBtn.addEventListener('click', () => {
+        popUpElement.classList.add('hidden');
+        document.body.classList.remove('stop-scrolling');
 
     });
 
+    document.body.classList.add('stop-scrolling');
+
+    //добавить возможность зафиксировать попап вне зависимости от скролла
 }
 
 
-
-// function createCard() {
-//     const exCartContainer = document.createElement('div');
-//     exCartContainer.classList.add('ex-book-container');
-//     exCart.appendChild(exCartContainer);
-//
-//     const exCartPriceElement = document.createElement('p');
-//     exCartPriceElement.classList.add('ex-book-price');
-//     exCartPriceElement.innerText = `30$`;
-//     exCartContainer.appendChild(exCartPriceElement);
-//
-//     const exRemoveBtn = document.createElement('button');
-//     exRemoveBtn.classList.add('remove-btn');
-//     exRemoveBtn.innerText = "x";
-//     exCartContainer.appendChild(exRemoveBtn);
-//
-//     updateCart()
-// }
-//
-// function updateCart() {
-//     let total = 0;
-//     const cardsInCart = document.querySelectorAll('.ex-book-container');
-//     cardsInCart.forEach(card => {
-//         let priceEl = card.querySelector('.ex-book-price');
-//         let price = Number(priceEl.innerText.replace("$", ""));
-//         total+=price;
-//     });
-//     document.querySelector(".cart-sum").innerText = total;
-// }
-
-// removeBtns.forEach(btn => {
-//     btn.addEventListener('click', () =>
-//     {
-//         console.log(btn);
-//         btn.parentElement.remove();
-//         updateCart();
-//     })
-// });
-
-/* Drag and drop */
-const card = document.querySelectorAll('.book-card');
-
-card.forEach(el => {
-    el.addEventListener('dragstart', () => {
-        el.classList.add('book-dragging')
-    });
-
-    el.addEventListener('dragend', () => {
-        el.classList.remove('book-dragging');
-        el.classList.add('book-in-cart');
-
-    });
-});
-
-cart.addEventListener('dragover', () => {
-    const draggable = document.querySelector('.book-dragging');
-    draggable.children[4].remove();
-    cartElement.appendChild(draggable);
-});
-
-
 /* Add to cart */
+
+/* Add btn */
+
+window.addEventListener('click', function(event) {
+    if (event.target.classList.contains('btn-buy')) {
+        addToCartClicked(event);
+    }
+});
 
 function addToCartClicked(event) {
     let book = booksArray.find(book => book.id === Number(event.target.parentElement.dataset.id));
     renderCardInCart(book);
 }
 
+/* Drag and drop */
+
+window.addEventListener('dragstart', function(event) {
+    if (event.target.classList.contains('book-card')) {
+        let card = event.target;
+        card.classList.add('book-dragging');
+    }
+});
+
+window.addEventListener('dragend', function(event) {
+    if (event.target.classList.contains('book-card')) {
+        let card = event.target;
+        card.classList.remove('book-dragging');
+    }
+});
+
+
+window.addEventListener('dragover', function(event) {
+        event.preventDefault();
+});
+
+window.addEventListener('drop', function(event) {
+    if (event.target.classList.contains('cart') || event.target.parentElement.classList.contains('book-card-cart')) {
+        const draggable = document.querySelector('.book-dragging');
+        let book = booksArray.find(book => book.id === Number(draggable.dataset.id));
+        renderCardInCart(book);
+    }
+
+});
+
+
+/* Cart render */
 
 function renderCardInCart(book) {
-
     const foundItem = cart.querySelector(`[data-id="${book.id}"]`);
 
     if(foundItem) {
         let count = ++foundItem.dataset.counter;
-        let newPrice = book.price*count;
-        foundItem.children[2].innerHTML=`Price: ${newPrice}$`;
+        let bookQuant = foundItem.children[3];
+        bookQuant.innerHTML = `Quantity: ${foundItem.dataset.counter}`;
+        updateSum(book.price, 1)
 
     } else {
+        updateSum(book.price, 1);
+
         const cardContainer = document.querySelector('.cards-container');
         const addItemCard = document.createElement('div');
         addItemCard.classList.add('book-card-cart');
@@ -281,10 +249,11 @@ function renderCardInCart(book) {
         addItemCard.setAttribute('data-counter', 1);
         cardContainer.appendChild(addItemCard);
 
-        addItemCard.innerHTML= `
+                addItemCard.innerHTML= `
             <h3 class="book-title">${book.title}</h3>
             <h4 class="book-subtitle">${book.author}</h4>
             <p class="book-price">Price: ${book.price}$</p>
+            <div class="book-quantity">Quantity: 1</div>
             `
 
         const cardCloseBtn = document.createElement('button');
@@ -298,13 +267,38 @@ function renderCardInCart(book) {
 
         cardCloseBtn.addEventListener('click', () => {
             cardCloseBtn.parentElement.remove();
+            let book = booksArray.find(book => book.id === Number(cardCloseBtn.parentElement.dataset.id));
+            updateSum(book.price*-1, Number(cardCloseBtn.parentElement.dataset.counter));
         });
     }
 
+    }
 
+let result = 0;
 
+function updateSum(sum, count) {
+    result+=sum*count;
+    const cartSumElement = document.querySelector('.cart-sum');
+    cartSumElement.innerText = `Total: ${result}$`;
+    if (result) {
+        confirmBtnUpdate(true);
+    } else {
+        confirmBtnUpdate(false);
+    }
+}
+
+function confirmBtnUpdate(arg) {
+    if (arg) {
+        confirmBtn.classList.remove('hidden');
+    } else {
+        confirmBtn.classList.add('hidden');
+    }
 
 }
+
+
+
+
 
 
 
