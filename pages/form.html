@@ -10,7 +10,58 @@
 
 </head>
 <body>
+    <div class="container">
+            <form action="#">
+                <fieldset class="deliveryInfo">
+                    <legend>Delivery Information</legend>
+                    <input type="text" id="name" name='name' placeholder="Name" required>
+                    <input type="text" id="surname" name='surname' placeholder="Surname" required>
+                    <input type="text" id="street" name='street' placeholder="Street" required>
+                    <input type="number" id="houseNumber" name='houseNumber' placeholder="House number" required>
+                    <input type="text" id="flatNumber" name='flatNumber' placeholder="Flat number" required>
+                    <label for="deliveryDate">Delivery date</label>
+                    <input type="date" id="deliveryDate" name='deliveryDate' required>
+                </fieldset>
+                <fieldset class="paymentInfo">
+                    <legend>Choose payment method</legend>
+                    <div>
+                        <input type="radio" id="cash" name='payment' value="cash">
+                        <label for="cash">Cash</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="card" name='payment' value="card">
+                        <label for="card">Card</label>
+                    </div>
+                </fieldset>
+                <fieldset class="giftsInfo">
+                    <legend>Choose your gifts (2 items)</legend>
+                    <div>
+                        <input type="checkbox" id="pack">
+                        <label for="pack">Pack as a gift</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="postcard" name='gift'>
+                        <label for="postcard">Add postcard</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="discount" name='gift'>
+                        <label for="discount">Provide 2% discount to the next time</label>
+                    </div>
+                    <div>
+
+                        <input type="checkbox" id="pen" name='gift'>
+                        <label for="pen">Branded pen or pencil</label>
+                    </div>
+                </fieldset>
+                <button type="submit" class="submitFormBtn" disabled>Confirm order</button>
+            </form>
+        </div>
 
 
+
+
+
+
+<script src="../assets/js/form.js"></script>
 </body>
 </html>

@@ -110,3 +110,9 @@ body{
     background-color: aquamarine;
 }
 
+
+/* Form  */
+
+.accent-input{
+    border-color: #ff0026;
+}
