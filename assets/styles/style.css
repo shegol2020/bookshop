@@ -112,7 +112,32 @@ body{
 
 
 /* Form  */
+.valid{
+    position: relative;
+}
 
-.accent-input{
-    border-color: #ff0026;
+.valid:before{
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 150px;
+    width: 12px;
+    height: 12px;
+    background: url("../images/valid.png");
+    background-size: cover;
+}
+
+.invalid{
+    position: relative;
+}
+
+.invalid:before{
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 150px;
+    width: 12px;
+    height: 12px;
+    background: url("../images/invalid.png");
+    background-size: cover;
 }

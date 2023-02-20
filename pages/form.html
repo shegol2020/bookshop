@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-</html><head>
+</html>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,58 +11,66 @@
 
 </head>
 <body>
-    <div class="container">
-            <form action="#">
-                <fieldset class="deliveryInfo">
-                    <legend>Delivery Information</legend>
-                    <input type="text" id="name" name='name' placeholder="Name" required>
-                    <input type="text" id="surname" name='surname' placeholder="Surname" required>
-                    <input type="text" id="street" name='street' placeholder="Street" required>
-                    <input type="number" id="houseNumber" name='houseNumber' placeholder="House number" required>
-                    <input type="text" id="flatNumber" name='flatNumber' placeholder="Flat number" required>
-                    <label for="deliveryDate">Delivery date</label>
-                    <input type="date" id="deliveryDate" name='deliveryDate' required>
-                </fieldset>
-                <fieldset class="paymentInfo">
-                    <legend>Choose payment method</legend>
-                    <div>
-                        <input type="radio" id="cash" name='payment' value="cash">
-                        <label for="cash">Cash</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="card" name='payment' value="card">
-                        <label for="card">Card</label>
-                    </div>
-                </fieldset>
-                <fieldset class="giftsInfo">
-                    <legend>Choose your gifts (2 items)</legend>
-                    <div>
-                        <input type="checkbox" id="pack">
-                        <label for="pack">Pack as a gift</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="postcard" name='gift'>
-                        <label for="postcard">Add postcard</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="discount" name='gift'>
-                        <label for="discount">Provide 2% discount to the next time</label>
-                    </div>
-                    <div>
+<div class="container">
+    <h1 class="form-heading">Fill the form</h1>
+    <form id="form-user" action="results.html" method="GET">
+        <fieldset class="deliveryInfo">
+            <legend>Delivery Information</legend>
+            <div class="inputBox">
+                <input type="text" id="name" name='name' placeholder="Name" class="delivery" required>
+            </div>
+            <div class="inputBox">
+                <input type="text" id="surname" name='surname' placeholder="Surname" class="delivery" required>
+            </div>
+            <div class="inputBox">
+                <input type="text" id="street" name='street' placeholder="Street" class="delivery" required>
+            </div>
+            <div class="inputBox">
+                <input type="text" id="houseNumber" name='houseNumber' placeholder="House number" min="1" class="delivery" required>
+            </div>
+            <div class="inputBox">
+                <input type="text" id="flatNumber" name='flatNumber' placeholder="Flat number" min="1" class="delivery" required>
+            </div>
+                <label for="deliveryDate">Delivery date</label>
+                <input type="date" id="deliveryDate" name='deliveryDate' required>
 
-                        <input type="checkbox" id="pen" name='gift'>
-                        <label for="pen">Branded pen or pencil</label>
-                    </div>
-                </fieldset>
-                <button type="submit" class="submitFormBtn" disabled>Confirm order</button>
-            </form>
-        </div>
-
-
-
-
+        </fieldset>
+        <fieldset class="paymentInfo">
+            <legend>Choose payment method</legend>
+            <div>
+                <input type="radio" class="radio" id="cash" name='payment' value="cash" required>
+                <label for="cash">Cash</label>
+            </div>
+            <div>
+                <input type="radio" class="radio" id="card" name='payment' value="card">
+                <label for="card">Card</label>
+            </div>
+        </fieldset>
+        <fieldset class="giftsInfo">
+            <legend>Choose your gifts (2 items)</legend>
+            <div>
+                <input type="checkbox" id="pack" name='gift' class='gift'>
+                <label for="pack">Pack as a gift</label>
+            </div>
+            <div>
+                <input type="checkbox" id="postcard" name='gift' class='gift'>
+                <label for="postcard">Add postcard</label>
+            </div>
+            <div>
+                <input type="checkbox" id="discount" name='gift' class='gift'>
+                <label for="discount">Provide 2% discount to the next time</label>
+            </div>
+            <div>
+                <input type="checkbox" id="pen" name='gift' class='gift'>
+                <label for="pen">Branded pen or pencil</label>
+            </div>
+        </fieldset>
+        <button type="submit" class="submitFormBtn" disabled>Confirm order</button>
+    </form>
+</div>
 
 
 <script src="../assets/js/form.js"></script>
 </body>
 </html>
+
