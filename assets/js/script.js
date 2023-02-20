@@ -79,7 +79,7 @@ confirmContainer.classList.add('confirm-container');
 cart.appendChild(confirmContainer);
 
 const confirmBtn = document.createElement('a');
-confirmBtn.href = '#';
+confirmBtn.href = 'form.html';
 confirmBtn.classList.add('confirmBtn', 'hidden');
 confirmBtn.innerText = 'Confirm';
 confirmContainer.append(confirmBtn);
