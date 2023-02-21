@@ -1,16 +1,119 @@
+/* figma
+https://www.figma.com/file/FVI75x5iJkZmbl9UlBjObD/Lbro-%7C-Brand-Guidelines-(Community)?node-id=15%3A21&t=z0Lo4B0L2yszfCC3-0
+ */
+
+
 h1, h2, h3, h4, ul, p {
     margin: 0;
     padding: 0;
 }
 
 body{
-    background-color: #F7F7F7;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F5F5;
+    font-family: 'Outfit', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .stop-scrolling {
     height: 100%;
     overflow: hidden;
 }
+
+.hidden{
+    visibility: hidden;
+}
+
+.main-wrapper{
+    display: flex;
+}
+
+.header{
+    background-color: #002A7B;
+    border: 1px solid black;
+}
+
+.logo-img{
+    padding: 5px;
+    height: 30px;
+    width: 30px;
+}
+
+.header-title-link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #F7F7F7;
+}
+
+.books-cards-heading{
+    padding: 20px 0;
+}
+
+.book-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    list-style: none;
+}
+
+.book-card{
+    position: relative;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    cursor: move;
+
+}
+
+.book-img{
+    width: 200px;
+}
+
+.book-title{
+    max-width: 200px;
+    font-size: 16px;
+}
+
+.book-subtitle{
+    color: #828282;
+    max-width: 200px;
+    font-size: 14px;
+}
+
+.btn-buy{
+    position: absolute;
+    top: 150px;
+    left: 50px;
+    height: 42px;
+    width: 42px;
+    border: none;
+    background-image: url("../images/cart-btn.png");
+    border-radius: 50%;
+}
+
+.btn-info{
+    position: absolute;
+    top: 150px;
+    left: 150px;
+    height: 42px;
+    width: 42px;
+    border: none;
+    background-image: url("../images/more-btn.png");
+    border-radius: 50%;
+}
+
+.book-dragging{
+   background-color: #828282;
+}
+
+/* Pop up */
+
 
 .pop-up{
     display: flex;
@@ -22,13 +125,15 @@ body{
     top: 0;
     left: 0;
     background-color: rgba(130, 130, 130, 0.8);
+    z-index: 10;
 }
 
 .pop-up-content{
     position: relative;
-    padding: 30px;
-    width: 50%;
-    background-color: #F7F7F7;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    z-index: 100;
 }
 
 .pop-up-close{
@@ -44,71 +149,38 @@ body{
     outline: none;
 }
 
-.hidden{
-    visibility: hidden;
-}
-
-.main-wrapper{
-    display: flex;
-}
-
-.header{
-    background-color: #ffffff;
-    border: 1px solid black;
-}
-
-.book-list{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    list-style: none;
-}
-
-.book-card{
-    max-height: 334px;
-    max-width: 210px;
-    background-color: #ffffff;
-    border: 1px solid black;
-    cursor: move;
-}
-
-.book-img{
-    height: 100px;
-}
-
-.book-title{
-    font-size: 20px;
-}
-
-.book-subtitle{
-    color: #828282;
-    font-size: 16px;
-}
-
-.book-dragging{
-   background-color: #828282;
+.book-desc{
+    max-width: 200px;
 }
 
 /* Cart  */
 
 .cart{
-    margin: 30px;
+    min-width: 200px;
+    margin-top: 70px;
     padding: 30px 50px 30px 20px;
     background-color: #ffffff;
-    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.cart-heading{
+    padding-top: 10px;
+}
+
+.cart-sum{
+    padding-top: 10px;
 }
 
 .book-card-cart{
     position: relative;
     padding: 10px 40px 10px 10px;
-    border: 1px solid grey;
+    border: 1px solid #002A7B;
+    border-radius: 20px;
 
 }
 
-.example-card{
-    height: 500px;
-    width: 500px;
-    background-color: aquamarine;
+.cards-container{
+    padding-top: 10px;
 }
 
 
@@ -141,4 +213,10 @@ body{
     height: 12px;
     background: url("../images/invalid.png");
     background-size: cover;
+}
+
+/* result */
+
+.result-heading{
+    padding: 10px 0;
 }

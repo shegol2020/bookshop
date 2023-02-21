@@ -17,16 +17,12 @@ const headerElement = document.createElement('header');
 headerElement.classList.add('header');
 fragment.appendChild(headerElement);
 
-const headerTitleElement = document.createElement('h1');
-headerTitleElement.classList.add('header-title');
-headerElement.appendChild(headerTitleElement);
-
-const headerTitleLinkElement = document.createElement('a');
-headerTitleLinkElement.classList.add('header-title-link');
-headerTitleLinkElement.href = "#";
-
-headerTitleLinkElement.innerText = "Book shop";
-headerTitleElement.appendChild(headerTitleLinkElement);
+headerElement.innerHTML= `
+            <div class="container header-wrap">
+    <h1 class="header-title">
+        <a class="header-title-link" href="#"><img src="../assets/images/logo.png" alt="" class="logo-img">Book shop</a></h1>
+    </div>
+            `
 
 const mainElement = document.createElement('main');
 mainElement.classList.add('main');
@@ -36,6 +32,7 @@ bodyElement.appendChild(fragment);
 
 const mainWrapperElement = document.createElement('div');
 mainWrapperElement.classList.add('main-wrapper');
+mainWrapperElement.classList.add('container');
 mainElement.appendChild(mainWrapperElement);
 
 const bookSectionElement = document.createElement('section');
@@ -135,12 +132,10 @@ function renderBooks(books) {
 
         const bookBuyBtnElement = document.createElement('button');
         bookBuyBtnElement.classList.add('btn-buy');
-        bookBuyBtnElement.innerText = "Add to cart";
         bookListItemElement.appendChild(bookBuyBtnElement);
 
         const bookInfoBtnElement = document.createElement('button');
         bookInfoBtnElement.classList.add('btn-info');
-        bookInfoBtnElement.innerText = "More info";
         bookListItemElement.appendChild(bookInfoBtnElement);
     })
 
@@ -204,11 +199,19 @@ window.addEventListener('dragstart', function(event) {
         let card = event.target;
         card.classList.add('book-dragging');
     }
+    if (event.target.classList.contains('book-img')) {
+        let card = event.target.parentElement;
+        card.classList.add('book-dragging');
+    }
 });
 
 window.addEventListener('dragend', function(event) {
     if (event.target.classList.contains('book-card')) {
         let card = event.target;
+        card.classList.remove('book-dragging');
+    }
+    if (event.target.classList.contains('book-img')) {
+        let card = event.target.parentElement;
         card.classList.remove('book-dragging');
     }
 });
