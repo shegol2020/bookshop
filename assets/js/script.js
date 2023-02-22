@@ -117,20 +117,24 @@ function renderBooks(books) {
         bookImgElement.setAttribute('alt', '');
         bookListItemElement.appendChild(bookImgElement);
 
+        const bookCardInfo = document.createElement('div');
+        bookCardInfo.classList.add('book-card-info');
+        bookListItemElement.appendChild(bookCardInfo);
+
         const bookTitleElement = document.createElement('h3');
         bookTitleElement.classList.add('book-title');
         bookTitleElement.innerText = book.title;
-        bookListItemElement.appendChild(bookTitleElement);
+        bookCardInfo.appendChild(bookTitleElement);
 
         const bookSubtitleElement = document.createElement('h4');
         bookSubtitleElement.classList.add('book-subtitle');
         bookSubtitleElement.innerText = book.author;
-        bookListItemElement.appendChild(bookSubtitleElement);
+        bookCardInfo.appendChild(bookSubtitleElement);
 
         const bookPriceElement = document.createElement('p');
         bookPriceElement.classList.add('book-price');
         bookPriceElement.innerText = `Price: ${book.price}$`;
-        bookListItemElement.appendChild(bookPriceElement);
+        bookCardInfo.appendChild(bookPriceElement);
 
         const bookBuyBtnElement = document.createElement('button');
         bookBuyBtnElement.classList.add('btn-buy', 'hidden');
@@ -143,12 +147,52 @@ function renderBooks(books) {
 
 }
 
+
+
+
 window.addEventListener('mouseover', function(event) {
+    if (event.target.closest('.book-card')) {
+        const card = event.target.parentElement;
+        const bookCardDark = card.querySelector('.book-card-dark');
+        const bookBtnBuy = card.querySelector('.btn-buy');
+        const bookBtnInfo = card.querySelector('.btn-info');
+
+        bookCardDark.classList.remove('hidden');
+        bookBtnBuy.classList.remove('hidden');
+        bookBtnInfo.classList.remove('hidden');
+    }
     if (event.target.classList.contains('book-card')) {
-        console.log(event);
-        // bookCardDark.classList.remove('hidden');
-        // bookBtnBuy.classList.remove('hidden');
-        // bookBtnInfo.classList.remove('hidden');
+        const card = event.target;
+        const bookCardDark = card.querySelector('.book-card-dark');
+        const bookBtnBuy = card.querySelector('.btn-buy');
+        const bookBtnInfo = card.querySelector('.btn-info');
+
+        bookCardDark.classList.remove('hidden');
+        bookBtnBuy.classList.remove('hidden');
+        bookBtnInfo.classList.remove('hidden');
+    }
+});
+
+window.addEventListener('mouseout', function(event) {
+    if (event.target.closest('.book-card')) {
+        const card = event.target.parentElement;
+        const bookCardDark = card.querySelector('.book-card-dark');
+        const bookBtnBuy = card.querySelector('.btn-buy');
+        const bookBtnInfo = card.querySelector('.btn-info');
+
+        bookCardDark.classList.add('hidden');
+        bookBtnBuy.classList.add('hidden');
+        bookBtnInfo.classList.add('hidden');
+    }
+    if (event.target.classList.contains('book-card')) {
+        const card = event.target.parentElement;
+        const bookCardDark = card.querySelector('.book-card-dark');
+        const bookBtnBuy = card.querySelector('.btn-buy');
+        const bookBtnInfo = card.querySelector('.btn-info');
+
+        bookCardDark.classList.add('hidden');
+        bookBtnBuy.classList.add('hidden');
+        bookBtnInfo.classList.add('hidden');
     }
 });
 
@@ -190,22 +234,6 @@ function popUpRender(event) {
 
 
 /* Add to cart */
-
-
-    const bookCardDark = document.querySelector('book-card-dark');
-    const bookBtnBuy = document.querySelector('btn-btn');
-    const bookBtnInfo = document.querySelector('btn-info');
-
-
-    // window.addEventListener('mouseover', function(event) {
-    //     if (event.target.classList.contains('book-card')) {
-    //         console.log(event);
-    //         // bookCardDark.classList.remove('hidden');
-    //         // bookBtnBuy.classList.remove('hidden');
-    //         // bookBtnInfo.classList.remove('hidden');
-    //     }
-    // });
-
 
 /* Add btn */
 
