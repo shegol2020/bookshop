@@ -1,10 +1,3 @@
-/* figma
-https://www.figma.com/file/FVI75x5iJkZmbl9UlBjObD/Lbro-%7C-Brand-Guidelines-(Community)?node-id=15%3A21&t=z0Lo4B0L2yszfCC3-0
- https://www.figma.com/file/vH8LhiIyygk1EuV0YgAdJF/Shopping-cart---web-application-(Community)?node-id=622%3A2446&t=Vu9thvSIJss0NCtN-0
-
- */
-
-
 h1, h2, h3, h4, ul, p {
     margin: 0;
     padding: 0;
@@ -70,7 +63,6 @@ body{
 
 .book-card{
     position: relative;
-    /*padding: 15px;*/
     background-color: #ffffff;
     border-radius: 20px;
     cursor: move;
