@@ -229,7 +229,6 @@ function popUpRender(event) {
 
     document.body.classList.add('stop-scrolling');
 
-    //добавить возможность зафиксировать попап вне зависимости от скролла
 }
 
 
