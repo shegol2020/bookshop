@@ -17,12 +17,12 @@
 <header class="header">
     <div class="container header-wrap">
     <h1 class="header-title">
-        <a class="header-title-link" href="#"><img src="../assets/images/logo.png" alt="" class="logo-img">Book shop</a></h1>
+        <a class="header-title-link" href="index.html"><img src="../assets/images/logo.png" alt="" class="logo-img">Book shop</a></h1>
     </div>
 </header>
 <div class="container">
     <h1 class="form-heading">Fill the form</h1>
-    <form id="form-user" action="results.html" method="GET">
+    <form id="form-user" class="form" action="results.html" method="GET">
         <fieldset class="deliveryInfo">
             <legend>Delivery Information</legend>
             <div class="inputBox">
@@ -41,7 +41,7 @@
                 <input type="text" id="flatNumber" name='flatNumber' placeholder="Flat number" min="1" class="delivery" required>
             </div>
                 <label for="deliveryDate">Delivery date</label>
-                <input type="date" id="deliveryDate" name='deliveryDate' required>
+                <input type="date" id="deliveryDate" name='deliveryDate' class="deliveryDate" required>
 
         </fieldset>
         <fieldset class="paymentInfo">

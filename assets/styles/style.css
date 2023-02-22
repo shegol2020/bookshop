@@ -1,5 +1,7 @@
 /* figma
 https://www.figma.com/file/FVI75x5iJkZmbl9UlBjObD/Lbro-%7C-Brand-Guidelines-(Community)?node-id=15%3A21&t=z0Lo4B0L2yszfCC3-0
+ https://www.figma.com/file/vH8LhiIyygk1EuV0YgAdJF/Shopping-cart---web-application-(Community)?node-id=622%3A2446&t=Vu9thvSIJss0NCtN-0
+
  */
 
 
@@ -64,11 +66,18 @@ body{
 
 .book-card{
     position: relative;
-    padding: 15px;
+    /*padding: 15px;*/
     background-color: #ffffff;
     border-radius: 20px;
     cursor: move;
+}
 
+.book-card-dark{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(130, 130, 130, 0.8);
+    z-index: 10;
 }
 
 .book-img{
@@ -81,6 +90,7 @@ body{
 }
 
 .book-subtitle{
+    padding-top: 10px;
     color: #828282;
     max-width: 200px;
     font-size: 14px;
@@ -95,6 +105,7 @@ body{
     border: none;
     background-image: url("../images/cart-btn.png");
     border-radius: 50%;
+    z-index: 10;
 }
 
 .btn-info{
@@ -106,6 +117,7 @@ body{
     border: none;
     background-image: url("../images/more-btn.png");
     border-radius: 50%;
+    z-index: 10;
 }
 
 .book-dragging{
@@ -125,11 +137,12 @@ body{
     top: 0;
     left: 0;
     background-color: rgba(130, 130, 130, 0.8);
-    z-index: 10;
+    z-index: 1000;
 }
 
 .pop-up-content{
     position: relative;
+    display: flex;
     padding: 40px;
     background-color: #ffffff;
     border-radius: 20px;
@@ -149,8 +162,13 @@ body{
     outline: none;
 }
 
+.book-info{
+    padding-left: 30px;
+}
+
 .book-desc{
     max-width: 200px;
+    padding-top: 10px;
 }
 
 /* Cart  */
@@ -183,8 +201,49 @@ body{
     padding-top: 10px;
 }
 
+.confirm-container{
+    padding-top: 20px;
+}
+
+.confirmBtn{
+    text-decoration: none;
+    background-color: #002A7B;
+    color: #ffffff;
+    padding: 10px 70px;
+    border-radius: 20px;
+}
+
 
 /* Form  */
+.form{
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+.form-heading{
+    padding-top: 10px;
+}
+
+.delivery{
+    padding: 10px;
+    font-size: 16px;
+}
+
+.deliveryInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.deliveryDate{
+    padding: 10px;
+    width: 195px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+}
+
+
 .valid{
     position: relative;
 }
@@ -192,10 +251,10 @@ body{
 .valid:before{
     content: '';
     position: absolute;
-    top: 4px;
-    left: 150px;
-    width: 12px;
-    height: 12px;
+    top: 12px;
+    left: 190px;
+    width: 18px;
+    height: 18px;
     background: url("../images/valid.png");
     background-size: cover;
 }
@@ -207,13 +266,30 @@ body{
 .invalid:before{
     content: '';
     position: absolute;
-    top: 4px;
-    left: 150px;
-    width: 12px;
-    height: 12px;
+    top: 12px;
+    left: 190px;
+    width: 18px;
+    height: 18px;
     background: url("../images/invalid.png");
     background-size: cover;
 }
+
+.submitFormBtn{
+    margin-top: 20px;
+    background-color: #002A7B;
+    color: #ffffff;
+    padding: 10px 50px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-family: 'Outfit', sans-serif;
+}
+
+.submitFormBtn:disabled {
+    background-color: #cccccc;
+    color: #666666;
+}
+
+
 
 /* result */
 

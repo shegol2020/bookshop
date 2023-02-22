@@ -5,8 +5,7 @@ const fragment = document.createDocumentFragment();
 const bodyElement = document.querySelector('body');
 
 const popUpElement = document.createElement('div');
-popUpElement.classList.add('pop-up');
-popUpElement.classList.add('hidden');
+popUpElement.classList.add('pop-up', 'hidden');
 fragment.appendChild(popUpElement);
 
 const popUpContentElement = document.createElement('div');
@@ -31,8 +30,7 @@ fragment.appendChild(mainElement);
 bodyElement.appendChild(fragment);
 
 const mainWrapperElement = document.createElement('div');
-mainWrapperElement.classList.add('main-wrapper');
-mainWrapperElement.classList.add('container');
+mainWrapperElement.classList.add('main-wrapper', 'container');
 mainElement.appendChild(mainWrapperElement);
 
 const bookSectionElement = document.createElement('section');
@@ -109,6 +107,10 @@ function renderBooks(books) {
         bookListItemElement.setAttribute('data-price', book.price);
         bookListElement.appendChild(bookListItemElement);
 
+        const bookCardDark = document.createElement('div');
+        bookCardDark.classList.add('book-card-dark', 'hidden');
+        bookListItemElement.appendChild(bookCardDark);
+
         const bookImgElement = document.createElement('img');
         bookImgElement.classList.add('book-img');
         bookImgElement.setAttribute('src', book.imageLink);
@@ -131,15 +133,24 @@ function renderBooks(books) {
         bookListItemElement.appendChild(bookPriceElement);
 
         const bookBuyBtnElement = document.createElement('button');
-        bookBuyBtnElement.classList.add('btn-buy');
+        bookBuyBtnElement.classList.add('btn-buy', 'hidden');
         bookListItemElement.appendChild(bookBuyBtnElement);
 
         const bookInfoBtnElement = document.createElement('button');
-        bookInfoBtnElement.classList.add('btn-info');
+        bookInfoBtnElement.classList.add('btn-info', 'hidden');
         bookListItemElement.appendChild(bookInfoBtnElement);
     })
 
 }
+
+window.addEventListener('mouseover', function(event) {
+    if (event.target.classList.contains('book-card')) {
+        console.log(event);
+        // bookCardDark.classList.remove('hidden');
+        // bookBtnBuy.classList.remove('hidden');
+        // bookBtnInfo.classList.remove('hidden');
+    }
+});
 
 /* Popup */
 window.addEventListener('click', function(event) {
@@ -158,9 +169,10 @@ function popUpRender(event) {
             <span class="material-icons">close</span>
              </button>
             <img class="book-img" src="${booksArray[bookNum].imageLink}" alt="">
-            <h3 class="book-title">${booksArray[bookNum].title}</h3>
+            <div class="book-info"> <h3 class="book-title">${booksArray[bookNum].title}</h3>
             <h4 class="book-subtitle">${booksArray[bookNum].author}</h4>
-            <p class="book-desc">${booksArray[bookNum].description}</p>
+            <p class="book-desc">${booksArray[bookNum].description}</p></div>
+           
             `
 
     const popUpCloseBtn = document.querySelector('.pop-up-close');
@@ -178,6 +190,22 @@ function popUpRender(event) {
 
 
 /* Add to cart */
+
+
+    const bookCardDark = document.querySelector('book-card-dark');
+    const bookBtnBuy = document.querySelector('btn-btn');
+    const bookBtnInfo = document.querySelector('btn-info');
+
+
+    // window.addEventListener('mouseover', function(event) {
+    //     if (event.target.classList.contains('book-card')) {
+    //         console.log(event);
+    //         // bookCardDark.classList.remove('hidden');
+    //         // bookBtnBuy.classList.remove('hidden');
+    //         // bookBtnInfo.classList.remove('hidden');
+    //     }
+    // });
+
 
 /* Add btn */
 
