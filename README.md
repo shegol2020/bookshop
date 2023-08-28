@@ -10,5 +10,8 @@ https://shegol2020.github.io/bookshop/pages/index.html
 
 ![image](https://user-images.githubusercontent.com/70282983/220666812-372f96dd-6d0d-4e9e-b20f-bc936ed45da5.png)
 
+![image](https://github.com/shegol2020/bookshop/assets/70282983/8bd5dfb0-334f-4f4f-9f58-fec16fbdffe3)
+
+
 
 
