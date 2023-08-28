@@ -5,8 +5,7 @@ const fragment = document.createDocumentFragment();
 const bodyElement = document.querySelector('body');
 
 const popUpElement = document.createElement('div');
-popUpElement.classList.add('pop-up');
-popUpElement.classList.add('hidden');
+popUpElement.classList.add('pop-up', 'hidden');
 fragment.appendChild(popUpElement);
 
 const popUpContentElement = document.createElement('div');
@@ -17,16 +16,12 @@ const headerElement = document.createElement('header');
 headerElement.classList.add('header');
 fragment.appendChild(headerElement);
 
-const headerTitleElement = document.createElement('h1');
-headerTitleElement.classList.add('header-title');
-headerElement.appendChild(headerTitleElement);
-
-const headerTitleLinkElement = document.createElement('a');
-headerTitleLinkElement.classList.add('header-title-link');
-headerTitleLinkElement.href = "#";
-
-headerTitleLinkElement.innerText = "Book shop";
-headerTitleElement.appendChild(headerTitleLinkElement);
+headerElement.innerHTML= `
+            <div class="container header-wrap">
+    <h1 class="header-title">
+        <a class="header-title-link" href="#"><img src="../assets/images/logo.png" alt="" class="logo-img">Book shop</a></h1>
+    </div>
+            `
 
 const mainElement = document.createElement('main');
 mainElement.classList.add('main');
@@ -35,7 +30,7 @@ fragment.appendChild(mainElement);
 bodyElement.appendChild(fragment);
 
 const mainWrapperElement = document.createElement('div');
-mainWrapperElement.classList.add('main-wrapper');
+mainWrapperElement.classList.add('main-wrapper', 'container');
 mainElement.appendChild(mainWrapperElement);
 
 const bookSectionElement = document.createElement('section');
@@ -79,7 +74,7 @@ confirmContainer.classList.add('confirm-container');
 cart.appendChild(confirmContainer);
 
 const confirmBtn = document.createElement('a');
-confirmBtn.href = '#';
+confirmBtn.href = 'form.html';
 confirmBtn.classList.add('confirmBtn', 'hidden');
 confirmBtn.innerText = 'Confirm';
 confirmContainer.append(confirmBtn);
@@ -112,39 +107,94 @@ function renderBooks(books) {
         bookListItemElement.setAttribute('data-price', book.price);
         bookListElement.appendChild(bookListItemElement);
 
+        const bookCardDark = document.createElement('div');
+        bookCardDark.classList.add('book-card-dark', 'hidden');
+        bookListItemElement.appendChild(bookCardDark);
+
         const bookImgElement = document.createElement('img');
         bookImgElement.classList.add('book-img');
         bookImgElement.setAttribute('src', book.imageLink);
         bookImgElement.setAttribute('alt', '');
         bookListItemElement.appendChild(bookImgElement);
 
+        const bookCardInfo = document.createElement('div');
+        bookCardInfo.classList.add('book-card-info');
+        bookListItemElement.appendChild(bookCardInfo);
+
         const bookTitleElement = document.createElement('h3');
         bookTitleElement.classList.add('book-title');
         bookTitleElement.innerText = book.title;
-        bookListItemElement.appendChild(bookTitleElement);
+        bookCardInfo.appendChild(bookTitleElement);
 
         const bookSubtitleElement = document.createElement('h4');
         bookSubtitleElement.classList.add('book-subtitle');
         bookSubtitleElement.innerText = book.author;
-        bookListItemElement.appendChild(bookSubtitleElement);
+        bookCardInfo.appendChild(bookSubtitleElement);
 
         const bookPriceElement = document.createElement('p');
         bookPriceElement.classList.add('book-price');
         bookPriceElement.innerText = `Price: ${book.price}$`;
-        bookListItemElement.appendChild(bookPriceElement);
+        bookCardInfo.appendChild(bookPriceElement);
 
         const bookBuyBtnElement = document.createElement('button');
-        bookBuyBtnElement.classList.add('btn-buy');
-        bookBuyBtnElement.innerText = "Add to cart";
+        bookBuyBtnElement.classList.add('btn-buy', 'hidden');
         bookListItemElement.appendChild(bookBuyBtnElement);
 
         const bookInfoBtnElement = document.createElement('button');
-        bookInfoBtnElement.classList.add('btn-info');
-        bookInfoBtnElement.innerText = "More info";
+        bookInfoBtnElement.classList.add('btn-info', 'hidden');
         bookListItemElement.appendChild(bookInfoBtnElement);
     })
 
 }
+
+
+
+
+window.addEventListener('mouseover', function(event) {
+    if (event.target.closest('.book-card')) {
+        const card = event.target.parentElement;
+        const bookCardDark = card.querySelector('.book-card-dark');
+        const bookBtnBuy = card.querySelector('.btn-buy');
+        const bookBtnInfo = card.querySelector('.btn-info');
+
+        bookCardDark.classList.remove('hidden');
+        bookBtnBuy.classList.remove('hidden');
+        bookBtnInfo.classList.remove('hidden');
+    }
+    if (event.target.classList.contains('book-card')) {
+        const card = event.target;
+        const bookCardDark = card.querySelector('.book-card-dark');
+        const bookBtnBuy = card.querySelector('.btn-buy');
+        const bookBtnInfo = card.querySelector('.btn-info');
+
+        bookCardDark.classList.remove('hidden');
+        bookBtnBuy.classList.remove('hidden');
+        bookBtnInfo.classList.remove('hidden');
+    }
+});
+
+window.addEventListener('mouseout', function(event) {
+    if (event.target.closest('.book-card')) {
+        const card = event.target.parentElement;
+        const bookCardDark = card.querySelector('.book-card-dark');
+        const bookBtnBuy = card.querySelector('.btn-buy');
+        const bookBtnInfo = card.querySelector('.btn-info');
+
+        bookCardDark.classList.add('hidden');
+        bookBtnBuy.classList.add('hidden');
+        bookBtnInfo.classList.add('hidden');
+    }
+    if (event.target.classList.contains('book-card')) {
+        const card = event.target.parentElement;
+        const bookCardDark = card.querySelector('.book-card-dark');
+        const bookBtnBuy = card.querySelector('.btn-buy');
+        const bookBtnInfo = card.querySelector('.btn-info');
+
+        bookCardDark.classList.add('hidden');
+        bookBtnBuy.classList.add('hidden');
+        bookBtnInfo.classList.add('hidden');
+    }
+});
 
 /* Popup */
 window.addEventListener('click', function(event) {
@@ -163,9 +213,10 @@ function popUpRender(event) {
             <span class="material-icons">close</span>
              </button>
             <img class="book-img" src="${booksArray[bookNum].imageLink}" alt="">
-            <h3 class="book-title">${booksArray[bookNum].title}</h3>
+            <div class="book-info"> <h3 class="book-title">${booksArray[bookNum].title}</h3>
             <h4 class="book-subtitle">${booksArray[bookNum].author}</h4>
-            <p class="book-desc">${booksArray[bookNum].description}</p>
+            <p class="book-desc">${booksArray[bookNum].description}</p></div>
+           
             `
 
     const popUpCloseBtn = document.querySelector('.pop-up-close');
@@ -178,7 +229,6 @@ function popUpRender(event) {
 
     document.body.classList.add('stop-scrolling');
 
-    //добавить возможность зафиксировать попап вне зависимости от скролла
 }
 
 
@@ -204,11 +254,19 @@ window.addEventListener('dragstart', function(event) {
         let card = event.target;
         card.classList.add('book-dragging');
     }
+    if (event.target.classList.contains('book-img')) {
+        let card = event.target.parentElement;
+        card.classList.add('book-dragging');
+    }
 });
 
 window.addEventListener('dragend', function(event) {
     if (event.target.classList.contains('book-card')) {
         let card = event.target;
+        card.classList.remove('book-dragging');
+    }
+    if (event.target.classList.contains('book-img')) {
+        let card = event.target.parentElement;
         card.classList.remove('book-dragging');
     }
 });
