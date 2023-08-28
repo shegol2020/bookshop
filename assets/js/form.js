@@ -24,7 +24,7 @@ const deliveryInputsCheck = function (ev) {
             pattern = /[^0-9 ]{5,}/;
             break;
         case 'street':
-            pattern = /[a-zA-Z 0-9]+/;
+            pattern = /[a-zA-Z 0-9]{5,}/;
             break;
         case 'houseNumber':
             pattern = /^[1-9]+[0-9]*$/;

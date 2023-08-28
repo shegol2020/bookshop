@@ -4,7 +4,15 @@ h1, h2, h3, h4, ul, p {
 }
 
 body{
-    background-color: #F7F7F7;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F5F5;
+    font-family: 'Outfit', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .stop-scrolling {
@@ -12,23 +20,130 @@ body{
     overflow: hidden;
 }
 
+.hidden{
+    visibility: hidden;
+}
+
+.main-wrapper{
+    display: flex;
+}
+
+.header{
+    background-color: #002A7B;
+    border: 1px solid black;
+}
+
+.logo-img{
+    padding: 5px;
+    height: 30px;
+    width: 30px;
+}
+
+.header-title-link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #F7F7F7;
+}
+
+.books-cards-heading{
+    padding: 20px 0;
+}
+
+.book-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    list-style: none;
+}
+
+.book-card-info{
+    padding: 5px 0 15px 15px;
+}
+
+.book-card{
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 20px;
+    cursor: move;
+}
+
+.book-card-dark{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(130, 130, 130, 0.8);
+    z-index: 10;
+}
+
+.book-img{
+    width: 200px;
+    max-height: 300px;
+}
+
+.book-title{
+    max-width: 150px;
+    font-size: 16px;
+}
+
+.book-subtitle{
+    padding-top: 10px;
+    color: #828282;
+    max-width: 150px;
+    font-size: 14px;
+}
+
+.btn-buy{
+    position: absolute;
+    top: 150px;
+    left: 50px;
+    height: 42px;
+    width: 42px;
+    border: none;
+    background-image: url("../images/cart-btn.png");
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.btn-info{
+    position: absolute;
+    top: 150px;
+    left: 120px;
+    height: 42px;
+    width: 42px;
+    border: none;
+    background-image: url("../images/more-btn.png");
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.book-dragging{
+   background-color: #828282;
+}
+
+/* Pop up */
+
+
 .pop-up{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: rgba(130, 130, 130, 0.8);
+    z-index: 1000;
 }
 
 .pop-up-content{
     position: relative;
-    padding: 30px;
-    width: 50%;
-    background-color: #F7F7F7;
+    display: flex;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    z-index: 100;
 }
 
 .pop-up-close{
@@ -44,74 +159,91 @@ body{
     outline: none;
 }
 
-.hidden{
-    visibility: hidden;
+.book-info{
+    padding-left: 30px;
 }
 
-.main-wrapper{
-    display: flex;
-}
-
-.header{
-    background-color: #ffffff;
-    border: 1px solid black;
-}
-
-.book-list{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    list-style: none;
-}
-
-.book-card{
-    max-height: 334px;
-    max-width: 210px;
-    background-color: #ffffff;
-    border: 1px solid black;
-    cursor: move;
-}
-
-.book-img{
-    height: 100px;
-}
-
-.book-title{
-    font-size: 20px;
-}
-
-.book-subtitle{
-    color: #828282;
-    font-size: 16px;
-}
-
-.book-dragging{
-   background-color: #828282;
+.book-desc{
+    max-width: 200px;
+    padding-top: 10px;
 }
 
 /* Cart  */
 
 .cart{
+    min-width: 200px;
+    margin-top: 70px;
     padding: 30px 50px 30px 20px;
     background-color: #ffffff;
-    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.cart-heading{
+    padding-top: 10px;
+}
+
+.cart-sum{
+    padding-top: 10px;
 }
 
 .book-card-cart{
     position: relative;
     padding: 10px 40px 10px 10px;
-    border: 1px solid grey;
+    border: 1px solid #002A7B;
+    border-radius: 20px;
 
 }
 
-.example-card{
-    height: 500px;
-    width: 500px;
-    background-color: aquamarine;
+.cards-container{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.confirm-container{
+    padding-top: 20px;
+}
+
+.confirmBtn{
+    text-decoration: none;
+    background-color: #002A7B;
+    color: #ffffff;
+    padding: 10px 70px;
+    border-radius: 20px;
 }
 
 
 /* Form  */
+.form{
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+.form-heading{
+    padding-top: 10px;
+}
+
+.delivery{
+    padding: 10px;
+    font-size: 16px;
+}
+
+.deliveryInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.deliveryDate{
+    padding: 10px;
+    width: 195px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+}
+
+
 .valid{
     position: relative;
 }
@@ -119,10 +251,10 @@ body{
 .valid:before{
     content: '';
     position: absolute;
-    top: 4px;
-    left: 150px;
-    width: 12px;
-    height: 12px;
+    top: 12px;
+    left: 190px;
+    width: 18px;
+    height: 18px;
     background: url("../images/valid.png");
     background-size: cover;
 }
@@ -134,10 +266,33 @@ body{
 .invalid:before{
     content: '';
     position: absolute;
-    top: 4px;
-    left: 150px;
-    width: 12px;
-    height: 12px;
+    top: 12px;
+    left: 190px;
+    width: 18px;
+    height: 18px;
     background: url("../images/invalid.png");
     background-size: cover;
+}
+
+.submitFormBtn{
+    margin-top: 20px;
+    background-color: #002A7B;
+    color: #ffffff;
+    padding: 10px 50px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-family: 'Outfit', sans-serif;
+}
+
+.submitFormBtn:disabled {
+    background-color: #cccccc;
+    color: #666666;
+}
+
+
+
+/* result */
+
+.result-heading{
+    padding: 10px 0;
 }
